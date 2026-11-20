@@ -15,7 +15,7 @@ final class GeminiTutorService
             throw new RuntimeException('CodeBot aún no está configurado. El administrador debe agregar GEMINI_API_KEY en el servidor.');
         }
 
-        $model = getenv('GEMINI_MODEL') ?: 'gemini-2.5-flash-lite';
+        $model = getenv('GEMINI_MODEL') ?: 'gemini-3.5-flash-lite';
         if (!preg_match('/^[a-zA-Z0-9._-]{3,80}$/', $model)) {
             throw new RuntimeException('La configuración del modelo de CodeBot no es válida.');
         }

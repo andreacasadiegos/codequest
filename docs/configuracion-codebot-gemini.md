@@ -15,7 +15,7 @@ En el proyecto de Vercel abre **Settings → Environment Variables** y agrega:
 | Variable | Valor |
 | --- | --- |
 | `GEMINI_API_KEY` | Tu clave de Google AI Studio |
-| `GEMINI_MODEL` | `gemini-2.5-flash-lite` |
+| `GEMINI_MODEL` | `gemini-3.5-flash-lite` |
 
 Selecciona los entornos que uses (Production, Preview y/o Development) y vuelve a desplegar para que las variables estén disponibles.
 
@@ -25,7 +25,7 @@ Configura las variables en el entorno de Apache/PHP, por ejemplo en la configura
 
 ```apache
 SetEnv GEMINI_API_KEY "TU_CLAVE_LOCAL"
-SetEnv GEMINI_MODEL "gemini-2.5-flash-lite"
+SetEnv GEMINI_MODEL "gemini-3.5-flash-lite"
 ```
 
 Reinicia Apache. No guardes la clave en un archivo que se suba al repositorio. Si tu configuración local no permite SetEnv, define las variables en el entorno del proceso Apache siguiendo la configuración de tu instalación.
@@ -48,7 +48,7 @@ El límite de 20 mensajes se aplica por cuenta y por ventana móvil de 24 horas.
 
 ## 5. Aplicar la migración de historial
 
-Ejecuta **solo una** migración, según el motor de la base de datos:
+En el VPS, el gestor de despliegue aplica automáticamente la migración de PostgreSQL. Para otros entornos, ejecuta **solo una** migración según el motor de la base de datos:
 
 - MySQL/XAMPP: `database/migrations/20261120_tutor_gemini_mysql.sql`
 - Supabase/PostgreSQL: `database/supabase/migracion_codebot.sql`
