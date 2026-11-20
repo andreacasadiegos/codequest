@@ -94,6 +94,24 @@
   border-top: var(--cq-border);
 }
 
+.cq-advance-evaluation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  color: var(--cq-text);
+  text-decoration: none;
+}
+
+.cq-advance-evaluation:hover .cq-advance-evaluation-name,
+.cq-advance-evaluation:focus-visible .cq-advance-evaluation-name {
+  color: var(--cq-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.cq-advance-evaluation-arrow { color: var(--cq-accent); }
+
 /* ---------- Tablas e historial ---------- */
 .cq-table {
   --bs-table-bg: transparent;

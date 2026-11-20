@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth.js';
 import { advancePath } from '../../services/gamificationService.js';
@@ -56,8 +57,24 @@ export default function PathAdvanceCard({ status, onAdvanced }) {
               className={`bi ${evaluation.passed ? 'bi-check-circle-fill text-success' : 'bi-circle cq-muted'}`}
               aria-hidden="true"
             />
-            <span className="flex-grow-1">Evaluación de {evaluation.module_name}</span>
-            <span className="fw-semibold">{evaluation.best_score === null ? 'Sin intentos' : `${evaluation.best_score}%`}</span>
+            <Link
+              className="cq-advance-evaluation flex-grow-1"
+              to={evaluation.locked ? `/modulos/${evaluation.module_slug}` : `/actividades/${evaluation.activity_id}`}
+              aria-label={evaluation.locked
+                ? `Ir al módulo ${evaluation.module_name} para completar las lecciones antes de la evaluación`
+                : `${evaluation.passed ? 'Volver a intentar' : 'Resolver'} la evaluación de ${evaluation.module_name}`}
+            >
+              <span className="cq-advance-evaluation-name">Evaluación de {evaluation.module_name}</span>
+              <span className="cq-muted small">
+                {evaluation.locked
+                  ? 'Completa las lecciones para desbloquear'
+                  : evaluation.passed ? 'Volver a intentar' : 'Resolver evaluación'}
+              </span>
+            </Link>
+            <span className="fw-semibold">
+              {evaluation.best_score === null ? 'Sin intentos' : `${evaluation.best_score}%`}
+            </span>
+            <i className="bi bi-arrow-right cq-advance-evaluation-arrow" aria-hidden="true" />
           </li>
         ))}
       </ul>

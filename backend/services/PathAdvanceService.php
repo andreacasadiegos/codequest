@@ -30,9 +30,11 @@ final class PathAdvanceService
 
         $best = (new Attempt())->bestByActivity($userId);
         $activities = new Activity();
+        $progress = new ProgressService();
         $evaluations = [];
 
         foreach ((new Module())->all() as $module) {
+            $lessons = $progress->lessonsWithState($userId, $module['id'], $pathId);
             foreach ($activities->forModule($module['id'], $pathId) as $activity) {
                 if ($activity['kind'] !== 'evaluacion') {
                     continue;
@@ -40,6 +42,8 @@ final class PathAdvanceService
                 $evaluations[] = [
                     'activity_id' => $activity['id'],
                     'module_name' => $module['name'],
+                    'module_slug' => $module['slug'],
+                    'locked'      => !$progress->isUnlocked($activity, $lessons),
                     'best_score'  => $best[$activity['id']]['best_score'] ?? null,
                     'passed'      => $best[$activity['id']]['passed'] ?? false,
                 ];
