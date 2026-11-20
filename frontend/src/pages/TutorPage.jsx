@@ -91,18 +91,31 @@ export default function TutorPage() {
   const submit = async (event) => {
     event.preventDefault();
     const message = draft.trim();
-    if (!message || !activeId || sending) return;
-    setDraft('');
+    if (!message || sending) return;
     setSending(true);
     setError('');
-    setMessages((current) => [...current, { role: 'user', content: message }]);
+    let pendingMessage = null;
     try {
-      const result = await sendTutorMessage(activeId, message);
+      // The welcome screen is also a valid starting point: create the first
+      // conversation on the user's first send instead of leaving Send disabled.
+      let conversationId = activeId;
+      if (!conversationId) {
+        const created = await createConversation();
+        conversationId = created.conversation.id;
+        setActiveId(conversationId);
+        setMessages([]);
+        await refreshConversations();
+      }
+
+      setDraft('');
+      pendingMessage = { role: 'user', content: message };
+      setMessages((current) => [...current, pendingMessage]);
+      const result = await sendTutorMessage(conversationId, message);
       setMessages((current) => [...current, result.assistant_message]);
       await refreshConversations();
     } catch (e) {
       setError(e.message);
-      setMessages((current) => current.filter((item, index) => !(index === current.length - 1 && item.role === 'user' && item.content === message)));
+      if (pendingMessage) setMessages((current) => current.filter((item) => item !== pendingMessage));
       setDraft(message);
     } finally {
       setSending(false);
@@ -211,11 +224,11 @@ export default function TutorPage() {
                 placeholder="Escribe tu pregunta sobre programación…"
                 value={draft}
                 onChange={(event) => setDraft(event.target.value)}
-                disabled={!activeId || sending || loading}
+                disabled={sending || loading}
               />
               <div className="d-flex justify-content-between align-items-center mt-2 gap-2">
                 <small className="cq-muted">Máximo 20 preguntas al día · {draft.length}/2000</small>
-                <button type="submit" className="btn btn-cq btn-cq-primary" disabled={!activeId || !draft.trim() || sending || loading}>
+                <button type="submit" className="btn btn-cq btn-cq-primary" disabled={!draft.trim() || sending || loading}>
                   Enviar <i className="bi bi-send-fill" aria-hidden="true" />
                 </button>
               </div>
