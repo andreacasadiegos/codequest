@@ -61,10 +61,16 @@ export default function ProgressPage() {
                     <tr key={activity.id}>
                       <td>
                         <span className={`cq-kind cq-kind-${activity.kind} me-2`}>{KIND_LABELS[activity.kind]}</span>
-                        {activity.locked ? (
-                          <span className="cq-muted">{activity.title}</span>
-                        ) : (
-                          <Link to={`/actividades/${activity.id}`}>{activity.title}</Link>
+                        <Link
+                          to={activity.locked ? `/modulos/${module.slug}` : `/actividades/${activity.id}`}
+                          aria-label={activity.locked
+                            ? `${activity.title}. ${lockedHint(activity.kind)}. Ir al módulo ${module.name}.`
+                            : `Abrir ${activity.title}`}
+                        >
+                          {activity.title}
+                        </Link>
+                        {activity.locked && (
+                          <span className="cq-muted small ms-2">{lockedHint(activity.kind)}</span>
                         )}
                       </td>
                       <td className="d-none d-md-table-cell"><Difficulty value={activity.difficulty} /></td>
@@ -137,3 +143,12 @@ export default function ProgressPage() {
     </section>
   );
 }
+
+function lockedHint(kind) {
+  return {
+    practica: 'Lee su lección para desbloquear · ir al módulo',
+    evaluacion: 'Lee todas las lecciones para desbloquear · ir al módulo',
+    reto: 'Aprueba la evaluación para desbloquear · ir al módulo',
+  }[kind] ?? 'Ve al módulo para continuar';
+}
+
