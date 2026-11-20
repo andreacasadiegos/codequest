@@ -1,12 +1,37 @@
-/* Identidad visual renovada de CodeQuest: clara, cercana y gamificada. */
+/* Paleta nocturna de la referencia: carbón, índigo, violeta y azul. */
 :root {
-  --cq-bg: #f5f8f4; --cq-surface: #ffffff; --cq-surface-2: #f0f7ef; --cq-surface-3: #e4f2e2;
-  --cq-primary: #2f9e55; --cq-primary-hover: #247d43; --cq-accent: #257a43; --cq-accent-soft: rgba(47,158,85,.10);
-  --cq-blue: #3987d8; --cq-cyan: #20a6a6; --cq-gradient: linear-gradient(135deg,#35ad62 0%,#218b50 100%);
-  --cq-text: #203329; --cq-text-muted: #607268; --cq-text-dim: #7d8c82;
-  --cq-success: #23834a; --cq-danger: #c43e42; --cq-warning: #a96512; --cq-xp: #b7791f;
-  --cq-font: system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
-  --cq-font-code: ui-monospace,'Cascadia Code','Consolas','SFMono-Regular',Menlo,monospace;
-  --cq-radius: 20px; --cq-radius-sm: 13px; --cq-border-color: #e1eae1; --cq-border: 1px solid var(--cq-border-color);
-  --cq-shadow: 0 8px 28px rgba(32,64,43,.08); --cq-glow: 0 8px 24px rgba(47,158,85,.18);
+  color-scheme: dark;
+  --cq-bg: #191a1c;
+  --cq-surface: #191335;
+  --cq-surface-2: #211a49;
+  --cq-surface-3: #2b2455;
+  --cq-input: #100d27;
+  --cq-primary: #925aff;
+  --cq-primary-hover: #ad83ff;
+  --cq-accent: #a987ff;
+  --cq-accent-soft: rgba(137, 84, 255, .16);
+  --cq-blue: #1952d5;
+  --cq-cyan: #70a7ff;
+  --cq-gradient: linear-gradient(110deg, #5010b8 0%, #3020ae 52%, #1352c4 100%);
+  --cq-text: #f4f1fb;
+  --cq-text-muted: #b2a9cc;
+  --cq-text-dim: #9188ae;
+  --cq-success: #72d6ad;
+  --cq-danger: #ff9aab;
+  --cq-warning: #ffd06b;
+  --cq-xp: #ffd354;
+  --cq-font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --cq-font-code: ui-monospace, 'Cascadia Code', Consolas, 'SFMono-Regular', Menlo, monospace;
+  --cq-radius: 20px;
+  --cq-radius-sm: 13px;
+  --cq-border-color: #352b60;
+  --cq-border: 1px solid var(--cq-border-color);
+  --cq-shadow: 0 12px 32px rgba(6, 5, 21, .32);
+  --cq-glow: 0 10px 30px rgba(81, 29, 185, .28);
+  --bs-body-bg: var(--cq-bg);
+  --bs-body-color: var(--cq-text);
+  --bs-secondary-color: var(--cq-text-muted);
+  --bs-border-color: var(--cq-border-color);
+  --bs-link-color: var(--cq-primary);
+  --bs-link-hover-color: var(--cq-primary-hover);
 }

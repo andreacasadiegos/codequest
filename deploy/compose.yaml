@@ -1,0 +1,30 @@
+name: codequest
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+      target: web
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:18080:80"
+    depends_on:
+      - api
+    networks:
+      - codequest
+
+  api:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+      target: api
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - codequest
+
+networks:
+  codequest:
+    name: codequest_internal

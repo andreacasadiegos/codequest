@@ -5,6 +5,14 @@ html {
 
 body { min-height:100vh; margin:0; font-family:var(--cq-font); background:var(--cq-bg); color:var(--cq-text); }
 
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--cq-text);
+  --bs-table-border-color: var(--cq-border-color);
+  --bs-table-hover-bg: var(--cq-surface-3);
+  --bs-table-hover-color: var(--cq-text);
+}
+
 /* Rejilla tenue tipo "editor de código" sobre el fondo. */
 body::before { content:none; }
 
@@ -54,7 +62,7 @@ main {
 }
 
 .cq-gradient-text {
-  background: linear-gradient(90deg, #2f9e55, #218b50 55%, #3987d8);
+  background: linear-gradient(90deg, #b696ff, #8f8cff 55%, #73a9ff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -108,11 +116,11 @@ main {
   --bs-btn-border-color: transparent;
   --bs-btn-hover-border-color: transparent;
   background: var(--cq-gradient);
-  box-shadow: 0 8px 24px rgba(47, 158, 85, 0.22);
+  box-shadow: var(--cq-glow);
 }
 
 .btn-cq-primary:hover {
-  box-shadow: 0 12px 30px rgba(47, 158, 85, 0.28);
+  box-shadow: 0 12px 30px rgba(79, 34, 192, 0.42);
 }
 
 .btn-cq-outline {
@@ -134,7 +142,7 @@ main {
 }
 
 .cq-form .form-control {
-  background: #ffffff;
+  background: var(--cq-input);
   border: var(--cq-border);
   border-radius: var(--cq-radius-sm);
   color: var(--cq-text);
@@ -146,9 +154,9 @@ main {
 }
 
 .cq-form .form-control:focus {
-  background: #ffffff;
+  background: var(--cq-input);
   border-color: var(--cq-accent);
-  box-shadow: 0 0 0 0.2rem rgba(47, 158, 85, 0.18);
+  box-shadow: 0 0 0 0.2rem var(--cq-accent-soft);
   color: var(--cq-text);
 }
 
@@ -166,7 +174,7 @@ main {
   border-left: 0;
   border-radius: 0 var(--cq-radius-sm) var(--cq-radius-sm) 0;
   color: var(--cq-text-muted);
-  background: #ffffff;
+  background: var(--cq-input);
 }
 
 .cq-form .input-group .form-control {
@@ -185,11 +193,11 @@ main {
 .cq-alert-danger {
   background: rgba(248, 113, 113, 0.12);
   border: 1px solid rgba(248, 113, 113, 0.4);
-  color: #9f292e;
+  color: #ffafba;
 }
 
 .cq-alert-success {
   background: rgba(52, 211, 153, 0.12);
   border: 1px solid rgba(52, 211, 153, 0.4);
-  color: #176b39;
+  color: var(--cq-success);
 }

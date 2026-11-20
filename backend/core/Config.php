@@ -43,7 +43,7 @@ final class Config
             'db' => [
                 'driver'   => str_starts_with($scheme, 'mysql') ? 'mysql' : 'pgsql',
                 'host'     => $parts['host'],
-                'port'     => (int) ($parts['port'] ?? 5432),
+                'port'     => (int) ($parts['port'] ?? (str_starts_with($scheme, 'mysql') ? 3306 : 5432)),
                 'name'     => ltrim($parts['path'] ?? '/postgres', '/') ?: 'postgres',
                 'user'     => rawurldecode($parts['user'] ?? 'postgres'),
                 'password' => rawurldecode($parts['pass'] ?? ''),
